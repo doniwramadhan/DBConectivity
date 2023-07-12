@@ -85,7 +85,7 @@ namespace DBConnectivity.Repository
         public void UpdateCountries(int Id,string Name, int RegionId)
         {
             _connection = new SqlConnection(connectionString);
-            string sql = "UPDATE COUNTRIES SET NAME = @Name, REGIONID = @RegionId WHERE ID = @Id";
+            string sql = "UPDATE COUNTRIES SET NAME = @Name, REGION_ID = @RegionId WHERE ID = @Id";
             SqlCommand command = new SqlCommand(sql, _connection);
             _connection.Open();
             SqlTransaction transaction = _connection.BeginTransaction();
@@ -169,7 +169,7 @@ namespace DBConnectivity.Repository
                         Console.WriteLine("================================");
                         Console.WriteLine("Id: " + reader.GetString(0));
                         Console.WriteLine("Name: " + reader.GetString(1));
-                        Console.WriteLine("RegionId: " + reader.GetString(2));
+                        Console.WriteLine("RegionId: " + reader.GetInt32(2));
                         Console.WriteLine("================================");
                     }
                 }

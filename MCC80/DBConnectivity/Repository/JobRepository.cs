@@ -153,18 +153,17 @@ namespace DBConnectivity.Repository
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM DEPARTMENTS WHERE ID = @id";
+                string sql = "SELECT * FROM JOBS WHERE ID = @id";
                 SqlCommand command = new SqlCommand(sql, _connection);
                 command.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = command.ExecuteReader();
-
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
                         Console.WriteLine("================================");
-                        Console.WriteLine("Id: " + reader.GetInt32(0));
+                        Console.WriteLine("Id: " + reader.GetString(0));
                         Console.WriteLine("Title: " + reader.GetString(1));
                         Console.WriteLine("Min Salary: " + reader.GetInt32(2));
                         Console.WriteLine("Max Salary: " + reader.GetInt32(3));
@@ -180,7 +179,7 @@ namespace DBConnectivity.Repository
             }
             catch
             {
-                Console.WriteLine("Error connecting to database");
+                Console.WriteLine("Connection Eror");
             }
         }
     }

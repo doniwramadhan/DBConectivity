@@ -88,7 +88,7 @@ namespace DBConnectivity.Repository
         public void UpdateLocation(int id, string streetAddress, string postalCode, string city, string stateProvince, string countryId)
         {
             _connection = new SqlConnection(connectionString);
-            string sql = "UPDATE REGIONS SET STREET_ADDRESS = @streetAddress, POSTAL_CODE = @postalCode, CITY = @city, STATE_PROVINCE = @stateProvince, COUNTRY_ID = @countryId WHERE ID = @id";
+            string sql = "UPDATE LOCATIONS SET STREET_ADDRESS = @streetAddress, POSTAL_CODE = @postalCode, CITY = @city, STATE_PROVINCE = @stateProvince, COUNTRY_ID = @countryId WHERE ID = @id";
             SqlCommand command = new SqlCommand(sql, _connection);
             _connection.Open();
             SqlTransaction transaction = _connection.BeginTransaction();

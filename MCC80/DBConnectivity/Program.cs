@@ -21,7 +21,7 @@ namespace DBConnectivity
 
         public static void Main(string[] args)
         {
-            bool exit = false;
+            
 
             _reg = new RegionsRepository();
             _cour = new CountriesRepository();
@@ -31,7 +31,14 @@ namespace DBConnectivity
             _emp = new EmployeeRepository();
             _his = new HistoriesRepository();
 
-            
+
+            MainMenu();
+
+        }
+
+        private static void MainMenu()
+        {
+            bool exit = false;
             while (!exit)
             {
                 Console.WriteLine("Regions Menu:");
@@ -82,10 +89,7 @@ namespace DBConnectivity
                 Console.WriteLine();
 
             }
-
         }
-
-        
         private static void Regions()
         {
             Console.WriteLine("Regions Menu:");
@@ -103,18 +107,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _reg.GetRegion();
+                    Regions();
                     break;
                 case "2":
                     InsertRegion();
+                    Regions();
                     break;
                 case "3":
                     UpdateRegion();
+                    Regions();
                     break;
                 case "4":
                     DeleteRegion();
+                    Regions();
                     break;
                 case "5":
                     FindRegionById();
+                    Regions();
                     break;
                 case "6":
                     break;
@@ -142,18 +151,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _cour.GetCountries();
+                    Countries();
                     break;
                 case "2":
                     InsertCountries();
+                    Countries();
                     break;
                 case "3":
                     UpdateCountries();
+                    Countries();
                     break;
                 case "4":
                     DeleteCountries();
+                    Countries();
                     break;
                 case "5":
                     FindCountries();
+                    Countries();
                     break;
                 case "6":
                     break;
@@ -179,18 +193,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _loc.GetLocation();
+                    Locations();
                     break;
                 case "2":
                     InsertLocation();
+                    Locations();
                     break;
                 case "3":
                     UpdateLocation();
+                    Locations();
                     break;
                 case "4":
                     DeleteLocation();
+                    Locations();
                     break;
                 case "5":
                     FindLocation();
+                    Locations();
                     break;
                 case "6":
                     break;
@@ -217,18 +236,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _dep.GetDepartment();
+                    Departments();
                     break;
                 case "2":
                     InsertDepartment();
+                    Departments();
                     break;
                 case "3":
                     UpdateDepartment();
+                    Departments();
                     break;
                 case "4":
                     DeleteDepartment();
+                    Departments();
                     break;
                 case "5":
                     FindDepartment();
+                    Departments();
                     break;
                 case "6":
                     break;
@@ -255,18 +279,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _job.GetJob();
+                    Jobs();
                     break;
                 case "2":
                     InsertJob();
+                    Jobs();
                     break;
                 case "3":
                     UpdateJob();
+                    Jobs();
                     break;
                 case "4":
                     DeleteJob();
+                    Jobs();
                     break;
                 case "5":
                     FindJob();
+                    Jobs();
                     break;
                 case "6":
                     break;
@@ -293,18 +322,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _emp.GetEmployee();
+                    Employees();
                     break;
                 case "2":
                     InsertEmployee();
+                    Employees();
                     break;
                 case "3":
                     UpdateEmployee();
+                    Employees();
                     break;
                 case "4":
                     DeleteEmployee();
+                    Employees();
                     break;
                 case "5":
                     FindEmployee();
+                    Employees();
                     break;
                 case "6":
                     break;
@@ -331,18 +365,23 @@ namespace DBConnectivity
             {
                 case "1":
                     _his.GetHistory();
+                    Histories();
                     break;
                 case "2":
                     InsertHistory();
+                    Histories();
                     break;
                 case "3":
                     UpdateHistory();
+                    Histories();
                     break;
                 case "4":
                     DeleteHistory();
+                    Histories();
                     break;
                 case "5":
                     FindHistory();
+                    Histories();
                     break;
                 case "6":
                     break;
@@ -524,7 +563,7 @@ namespace DBConnectivity
 
         public static void UpdateDepartment()
         {
-            Console.WriteLine("Enter ID you want to add: ");
+            Console.WriteLine("Enter ID you want to edit: ");
             int id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Department Name : ");
             string name = Console.ReadLine();

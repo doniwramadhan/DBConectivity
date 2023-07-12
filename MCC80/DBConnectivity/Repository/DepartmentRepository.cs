@@ -84,7 +84,7 @@ namespace DBConnectivity.Repository
         public void UpdateDepartment(int id, string name, int locationId, int managerId)
         {
             _connection = new SqlConnection(connectionString);
-            string sql = "UPDATE REGIONS SET name = @name, locationId = @locationId, managerId = @managerId WHERE ID = @id";
+            string sql = "UPDATE DEPARTMENTS SET name = @name, location_Id = @locationId, manager_Id = @managerId WHERE ID = @id";
             SqlCommand command = new SqlCommand(sql, _connection);
             _connection.Open();
             SqlTransaction transaction = _connection.BeginTransaction();
@@ -167,7 +167,7 @@ namespace DBConnectivity.Repository
                         Console.WriteLine("Id: " + reader.GetInt32(0));
                         Console.WriteLine("Name: " + reader.GetString(1));
                         Console.WriteLine("Location Id: " + reader.GetInt32(2));
-                        Console.WriteLine("Manager Id: " + reader.GetInt32(3));
+                        Console.WriteLine("Manager Id: " + reader.IsDBNull(3));
                         Console.WriteLine("================================");
                     }
                 }
