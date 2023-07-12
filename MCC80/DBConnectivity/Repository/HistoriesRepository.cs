@@ -88,7 +88,7 @@ namespace DBConnectivity.Repository
         public void UpdateHistory(string startDate, int employeeId, string endDate, int departmentId, string jobId)
         {
             _connection = new SqlConnection(connectionString);
-            string sql = "UPDATE HISTORIES SET start_date = @startDate, employee_id = @employeeId, end_date = @endDate, department_id = @departmentId, job_id = @jobId WHERE ID = @id";
+            string sql = "UPDATE HISTORIES SET start_date = @startDate, employee_id = @employeeId, end_date = @endDate, department_id = @departmentId, job_id = @jobId WHERE employee_id = @employeeId";
             SqlCommand command = new SqlCommand(sql, _connection);
             _connection.Open();
             SqlTransaction transaction = _connection.BeginTransaction();
@@ -125,7 +125,7 @@ namespace DBConnectivity.Repository
         public void DeleteHistory(int id)
         {
             _connection = new SqlConnection(connectionString);
-            string sql = "DELETE FROM HISTORIES WHERE ID = @id";
+            string sql = "DELETE FROM HISTORIES WHERE employee_id = @id";
             SqlCommand command = new SqlCommand(sql, _connection);
             _connection.Open();
             SqlTransaction transaction = _connection.BeginTransaction();
@@ -159,7 +159,7 @@ namespace DBConnectivity.Repository
             try
             {
                 _connection.Open();
-                string sql = "SELECT * FROM HISTORIES WHERE ID = @id";
+                string sql = "SELECT * FROM HISTORIES WHERE employee_id = @id";
                 SqlCommand command = new SqlCommand(sql, _connection);
                 command.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = command.ExecuteReader();

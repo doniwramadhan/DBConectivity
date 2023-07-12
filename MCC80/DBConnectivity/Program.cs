@@ -17,17 +17,19 @@ namespace DBConnectivity
         private static DepartmentRepository _dep;
         private static JobRepository _job;
         private static EmployeeRepository _emp;
+        private static HistoriesRepository _his;
 
         public static void Main(string[] args)
         {
+            bool exit = false;
+
             _reg = new RegionsRepository();
             _cour = new CountriesRepository();
             _loc = new LocationsRepository();
             _dep = new DepartmentRepository();
             _job = new JobRepository();
             _emp = new EmployeeRepository();
-            bool exit = false;
-
+            _his = new HistoriesRepository();
 
             
             while (!exit)
@@ -67,7 +69,7 @@ namespace DBConnectivity
                         Employees();
                         break;
                     case "7":
-                        //Histories();
+                        Histories();
                         break;
                     case "0":
                         exit = true;
@@ -312,6 +314,43 @@ namespace DBConnectivity
             }
         }
 
+        private static void Histories()
+        {
+            Console.WriteLine("Histories Menu:");
+            Console.WriteLine("1. Show All Histories");
+            Console.WriteLine("2. Insert Histories");
+            Console.WriteLine("3. Update Histories");
+            Console.WriteLine("4. Delete Histories");
+            Console.WriteLine("5. Find Histories by Id");
+            Console.WriteLine("6. Back");
+            string menuOption = Console.ReadLine();
+
+            Console.WriteLine();
+
+            switch (menuOption)
+            {
+                case "1":
+                    _his.GetHistory();
+                    break;
+                case "2":
+                    InsertHistory();
+                    break;
+                case "3":
+                    UpdateHistory();
+                    break;
+                case "4":
+                    DeleteHistory();
+                    break;
+                case "5":
+                    FindHistory();
+                    break;
+                case "6":
+                    break;
+                default:
+                    Console.WriteLine("Your option is not valid");
+                    break;
+            }
+        }
 
         //======================== REGIONS ==============================
         public static void InsertRegion()
@@ -678,6 +717,107 @@ namespace DBConnectivity
             Console.WriteLine("Enter ID you want to find: ");
             int id = Convert.ToInt32(Console.ReadLine());
             _emp.FindEmployee(id);
+        }
+
+        //======================== HISTORIES ==============================
+        public static void InsertHistory()
+        {
+            Console.WriteLine("Enter Start Date (Format: yyyy-MM-dd): ");
+            string hireDate = Console.ReadLine();
+
+            DateOnly date;
+
+            if (DateOnly.TryParseExact(hireDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                Console.WriteLine("Input date: " + date.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Wrong date format");
+            }
+
+            Console.WriteLine("Enter Employee Id: ");
+            int employeeId = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter End Date(Format: yyyy-MM-dd):");
+            string endDate = Console.ReadLine();
+
+            if (DateOnly.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                Console.WriteLine("Input date: " + date.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Wrong date format");
+            }
+            Console.WriteLine("Enter Department Id: ");
+            int departmentId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Job Id: ");
+            string jobId = Console.ReadLine();
+
+            _his.InsertHistory(hireDate,employeeId,endDate,departmentId,jobId);
+        }
+
+        public static void UpdateHistory()
+        {
+            Console.WriteLine("Enter Start Date (Format: yyyy-MM-dd): ");
+            string hireDate = Console.ReadLine();
+
+            DateOnly date;
+
+            if (DateOnly.TryParseExact(hireDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                Console.WriteLine("Input date: " + date.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Wrong date format");
+            }
+
+            Console.WriteLine("Enter Employee Id: ");
+            int employeeId = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter End Date(Format: yyyy-MM-dd):");
+            string endDate = Console.ReadLine();
+
+            if (DateOnly.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                Console.WriteLine("Input date: " + date.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Wrong date format");
+            }
+            Console.WriteLine("Enter Department Id: ");
+            int departmentId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter Job Id: ");
+            string jobId = Console.ReadLine();
+
+            _his.InsertHistory(hireDate, employeeId, endDate, departmentId, jobId);
+        }
+
+        public static void DeleteHistory()
+        {
+            Console.WriteLine("Enter ID you want to delete: ");
+            int employeeId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Are you sure want to delete this {employeeId}? (y/n)");
+            string confirm = Console.ReadLine();
+
+            if (confirm.ToLower() == "y")
+            {
+                _his.DeleteHistory(employeeId);
+            }
+            else
+            {
+                Console.WriteLine("Cancel delete");
+            }
+        }
+
+        public static void FindHistory()
+        {
+            Console.WriteLine("Enter ID you want to find: ");
+            int employeeId = Convert.ToInt32(Console.ReadLine());
+            _his.FindHistory(employeeId);
         }
     }
 }   
