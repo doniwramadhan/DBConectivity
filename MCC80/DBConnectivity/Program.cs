@@ -24,20 +24,13 @@ namespace DBConnectivity
 
         public static void Main(string[] args)
         {
-            IRegionsRepository reg = new RegionsRepository();
-            ICountriesRepository cour = new CountriesRepository();
-            ILocationsRepository loc = new LocationsRepository();
-            IDepartmentRepository dep = new DepartmentRepository();
-            IJobsRepository job = new JobRepository();
-            IEmployeesRepository emp = new EmployeeRepository();
-            IHistoriesRepository his = new HistoriesRepository();
-            _reg = reg;
-            _cour = cour;
-            _loc = loc;
-            _dep = dep;
-            _job = job;
-            _emp = emp;
-            _his = his;
+             _reg = new RegionsRepository();
+             _cour = new CountriesRepository();
+             _loc = new LocationsRepository();
+             _dep = new DepartmentRepository();
+             _job = new JobRepository();
+             _emp = new EmployeeRepository();
+             _his = new HistoriesRepository();
 
             MainMenu();
         }
