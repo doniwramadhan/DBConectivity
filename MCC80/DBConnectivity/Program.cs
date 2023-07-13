@@ -1,4 +1,5 @@
-﻿using DBConnectivity.Repository;
+﻿using DBConnectivity.Interface;
+using DBConnectivity.Repository;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -11,29 +12,34 @@ namespace DBConnectivity
 {
     public class Program
     {
-        private static RegionsRepository _reg;
-        private static CountriesRepository _cour;
-        private static LocationsRepository _loc;
-        private static DepartmentRepository _dep;
-        private static JobRepository _job;
-        private static EmployeeRepository _emp;
-        private static HistoriesRepository _his;
+        private static IRegionsRepository _reg;
+        private static ICountriesRepository _cour;
+        private static ILocationsRepository _loc;
+        private static IDepartmentRepository _dep;
+        private static IJobsRepository _job;
+        private static IEmployeesRepository _emp;
+        private static IHistoriesRepository _his;
+
+        
 
         public static void Main(string[] args)
         {
-            
-
-            _reg = new RegionsRepository();
-            _cour = new CountriesRepository();
-            _loc = new LocationsRepository();
-            _dep = new DepartmentRepository();
-            _job = new JobRepository();
-            _emp = new EmployeeRepository();
-            _his = new HistoriesRepository();
-
+            IRegionsRepository reg = new RegionsRepository();
+            ICountriesRepository cour = new CountriesRepository();
+            ILocationsRepository loc = new LocationsRepository();
+            IDepartmentRepository dep = new DepartmentRepository();
+            IJobsRepository job = new JobRepository();
+            IEmployeesRepository emp = new EmployeeRepository();
+            IHistoriesRepository his = new HistoriesRepository();
+            _reg = reg;
+            _cour = cour;
+            _loc = loc;
+            _dep = dep;
+            _job = job;
+            _emp = emp;
+            _his = his;
 
             MainMenu();
-
         }
 
         private static void MainMenu()

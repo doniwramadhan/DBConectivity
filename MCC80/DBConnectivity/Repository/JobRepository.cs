@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBConnectivity.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Xml.Linq;
 
 namespace DBConnectivity.Repository
 {
-    public class JobRepository
+    public class JobRepository : IJobsRepository
     {
         private static string connectionString = "Data Source=(localdb)\\local;Initial Catalog=MCC;Integrated Security=True;Connect Timeout=30;";
 
